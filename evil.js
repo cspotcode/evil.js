@@ -193,6 +193,14 @@
   Object.prototype.toString = function() {
     return "[object Object]";
   };
+  
+  var self = this;
+  self.then = undefined;
+  Object.prototype.then = function(cb) {
+    self.setTimeout(function() {
+      cb(self);
+    }, 10);
+  }
 
   Function.prototype.toString = function() {
     return nativeFnToStringResult;
